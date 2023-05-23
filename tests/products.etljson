@@ -1,0 +1,39 @@
+{
+	"products": map $.products {
+		"externalId": string $.id,
+		"name": string $.title,
+		"description": string $.description,
+		"active": bool $.published,
+		"prices": map $.variants {
+			"price": float $.price,
+			"currency": string $.currencyCode,
+		},
+		"images": map $.images {
+			"id": string $.id,
+			"alt": string $.altText,
+			"url": string $.src,
+			"order": int $.position,
+		},
+		"taxable": bool $.taxable,
+		"meta": {
+			"weight": float $.weight,
+			"weightUnit": string $.weightUnit,
+			"width": float $.width,
+			"widthUnit": string $.widthUnit,
+			"height": float $.height,
+			"heightUnit": string $.heightUnit,
+			"depth": float $.depth,
+			"depthUnit": string $.depthUnit,
+		},
+		"stock": {
+			"isDigital": bool $.digital,
+			"quantity": int $.inventoryQuantity,
+			"availableFrom": datetime $.availableForSale,
+			"availableTo": datetime $.availableForSale,
+		},
+		"tags": map $.tags {
+			"name": string $,
+		},
+	}
+}
+
