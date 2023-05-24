@@ -588,7 +588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.17.0":
+"nan@npm:^2.14.1, nan@npm:^2.17.0":
   version: 2.17.0
   resolution: "nan@npm:2.17.0"
   dependencies:
@@ -846,12 +846,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tree-sitter-json@npm:^0.20.0":
+  version: 0.20.0
+  resolution: "tree-sitter-json@npm:0.20.0"
+  dependencies:
+    nan: ^2.14.1
+    node-gyp: latest
+  checksum: 820e27b644e3ec62d8753976572660fbc314b0ffb10178384ae0d187187797c3d87223bec6b034e602445e4095484a28fb89ca67653a1d4f41fa13dd6adad0d2
+  languageName: node
+  linkType: hard
+
 "treesitter-etljson@workspace:.":
   version: 0.0.0-use.local
   resolution: "treesitter-etljson@workspace:."
   dependencies:
     nan: ^2.17.0
     tree-sitter-cli: ^0.20.8
+    tree-sitter-json: ^0.20.0
   languageName: unknown
   linkType: soft
 

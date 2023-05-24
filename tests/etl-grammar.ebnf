@@ -1,0 +1,60 @@
+schema = (func-expression | object | array) , opt-white-space
+
+object = opt-white-space, OBJ_L , opt-white-space , (field , ","?)+ , opt-white-space , OBJ_R ;
+
+callback-object = opt-white-space , OBJ_L , CALLBACK_IDENTITIFER , opt-white-space , (field , ","?)+ , opt-white-space , OBJ_R ;
+
+field =  opt-white-space, string , ":" , opt-white-space , value;
+
+value = object
+       | array
+       | string
+       | number
+       | boolean
+       | func-expression
+       | type-expression
+       ;
+
+func-expression = functional-expr-funcs , " " , value-expression , callback-object ;
+type-expression = type-expr-types, " ", value-expression ;
+value-expression = ("$" | identifier) , ("." , identifier)? ;
+
+array = ARR_L , (value , ","), value , ARR_R ;
+identifier = (character | digit)+ ;
+string = '"' , printable-chars+ , '"' ;
+printable-chars = character | digit | '~' '@' '#' '%' '_' '$' '&' "'" '-' '+' '/'
+character = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+number = digit | float ;
+float = digit+ , "." , digit+ ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+white-space
+       = " "
+       | "\t"
+       | "\n"
+       ;
+boolean = "true"
+        | "false"
+
+opt-white-space = white-space+?
+
+type-expr-types
+        = "string"
+        | "bool"
+        | "float"
+        | "int"
+        | "datetime"
+        ;
+
+functional-expr-funcs
+	= "map"
+	| "reduce"
+	| "filter"
+        ;
+
+COMMENT = "//*" 
+CALLBACK_IDENTITIFER = opt-white-space , identifier , " in" , white-space+
+OBJ_L = "{";
+OBJ_R = "}";
+ARR_L = "[";
+ARR_R = "]";
+

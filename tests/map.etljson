@@ -1,0 +1,37 @@
+map $.products { p in
+	"externalId": string p.id,
+	"name": string p.title,
+	"description": string p.description,
+	"active": bool p.published,
+	"fixed": "fixed",
+	"prices": map p.variants { v in
+		"price": float v.price,
+		"currency": string v.currencyCode
+	},
+	"images": map p.images { i in
+		"id": string i.id,
+		"alt": string i.altText,
+		"url": string i.src,
+		"order": int i.position
+	},
+	"taxable": bool p.taxable,
+	"meta": {
+		"weight": float p.weight,
+		"weightUnit": string p.weightUnit,
+		"width": float p.width,
+		"widthUnit": string p.widthUnit,
+		"height": float p.height,
+		"heightUnit": string p.heightUnit,
+		"depth": float p.depth,
+		"depthUnit": string p.depthUnit
+	},
+	"stock": {
+		"isDigital": bool p.digital,
+		"quantity": int p.inventoryQuantity,
+		"availableFrom": datetime p.availableForSale,
+		"availableTo": datetime p.availableForSale
+	},
+	"tags": map $.tags { t in
+		"name": string t
+	}
+}

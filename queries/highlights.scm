@@ -14,5 +14,6 @@
 "$" @string.special.symbol
 
 (type) @type
-(func) @type
+(func) @keyword.function
 (string) @string
+(keyword) @keyword

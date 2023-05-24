@@ -1,5 +1,43 @@
 [
   {
+    "type": "_value",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "array",
+        "named": true
+      },
+      {
+        "type": "expr",
+        "named": true
+      },
+      {
+        "type": "false",
+        "named": true
+      },
+      {
+        "type": "null",
+        "named": true
+      },
+      {
+        "type": "number",
+        "named": true
+      },
+      {
+        "type": "object",
+        "named": true
+      },
+      {
+        "type": "string",
+        "named": true
+      },
+      {
+        "type": "true",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "array",
     "named": true,
     "fields": {},
@@ -8,16 +46,87 @@
       "required": false,
       "types": [
         {
-          "type": "value",
+          "type": "_value",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "boolean",
+    "type": "callbackIdentifier",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "callbackObject",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "callbackIdentifier",
+          "named": true
+        },
+        {
+          "type": "pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "funcExpr",
+          "named": true
+        },
+        {
+          "type": "typeExpr",
+          "named": true
+        },
+        {
+          "type": "valExpr",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "func",
@@ -33,11 +142,11 @@
       "required": true,
       "types": [
         {
-          "type": "func",
+          "type": "callbackObject",
           "named": true
         },
         {
-          "type": "object",
+          "type": "func",
           "named": true
         },
         {
@@ -48,6 +157,16 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "object",
     "named": true,
     "fields": {},
@@ -56,37 +175,59 @@
       "required": false,
       "types": [
         {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "value",
+          "type": "pair",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "source_file",
+    "type": "pair",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "object",
-          "named": true
-        }
-      ]
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_content",
     "named": true,
     "fields": {},
     "children": {
@@ -129,50 +270,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "funcExpr",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "object",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "typeExpr",
           "named": true
         }
       ]
@@ -215,6 +317,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "datetime",
     "named": false
   },
@@ -224,7 +330,7 @@
   },
   {
     "type": "false",
-    "named": false
+    "named": true
   },
   {
     "type": "filter",
@@ -235,8 +341,8 @@
     "named": false
   },
   {
-    "type": "identifier",
-    "named": true
+    "type": "in",
+    "named": false
   },
   {
     "type": "int",
@@ -245,6 +351,10 @@
   {
     "type": "map",
     "named": false
+  },
+  {
+    "type": "null",
+    "named": true
   },
   {
     "type": "number",
@@ -264,7 +374,7 @@
   },
   {
     "type": "true",
-    "named": false
+    "named": true
   },
   {
     "type": "{",

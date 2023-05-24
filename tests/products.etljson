@@ -1,39 +1,41 @@
 {
-	"products": map $.products {
-		"externalId": string $.id,
-		"name": string $.title,
-		"description": string $.description,
-		"active": bool $.published,
-		"prices": map $.variants {
-			"price": float $.price,
-			"currency": string $.currencyCode,
+	"products": map $.products { p in
+		"externalId": string p.id,
+		"name": string p.title,
+		"description": string p.description,
+		"active": bool p.published,
+		"fixed": "fixed",
+		"prices": map p.variants { v in
+			"price": float v.price,
+			"currency": string v.currencyCode
 		},
-		"images": map $.images {
-			"id": string $.id,
-			"alt": string $.altText,
-			"url": string $.src,
-			"order": int $.position,
+		"images": map p.images { i in
+			"id": string i.id,
+			"alt": string i.altText,
+			"url": string i.src,
+			"order": int i.position
 		},
-		"taxable": bool $.taxable,
+		"taxable": bool p.taxable,
 		"meta": {
-			"weight": float $.weight,
-			"weightUnit": string $.weightUnit,
-			"width": float $.width,
-			"widthUnit": string $.widthUnit,
-			"height": float $.height,
-			"heightUnit": string $.heightUnit,
-			"depth": float $.depth,
-			"depthUnit": string $.depthUnit,
+			"weight": float p.weight,
+			"weightUnit": string p.weightUnit,
+			"width": float p.width,
+			"widthUnit": string p.widthUnit,
+			"height": float p.height,
+			"heightUnit": string p.heightUnit,
+			"depth": float p.depth,
+			"depthUnit": string p.depthUnit
 		},
 		"stock": {
-			"isDigital": bool $.digital,
-			"quantity": int $.inventoryQuantity,
-			"availableFrom": datetime $.availableForSale,
-			"availableTo": datetime $.availableForSale,
+			"isDigital": bool p.digital,
+			"quantity": int p.inventoryQuantity,
+			"availableFrom": datetime p.availableForSale,
+			"availableTo": datetime p.availableForSale
 		},
-		"tags": map $.tags {
-			"name": string $,
-		},
+		"tags": map p.tags { t in
+			"name": string t
+		}
 	}
 }
+
 
