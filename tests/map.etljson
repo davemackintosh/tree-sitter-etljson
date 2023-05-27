@@ -1,6 +1,6 @@
 import ShopifyProduct[] as products
 
-map products { p in
+export map p { p in where p.published and has p.variants
 	"externalId": string p.id,
 	"name": string p.title,
 	"description": string p.description,

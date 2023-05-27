@@ -12,27 +12,11 @@
         "named": true
       },
       {
-        "type": "false",
-        "named": true
-      },
-      {
-        "type": "null",
-        "named": true
-      },
-      {
-        "type": "number",
+        "type": "literal",
         "named": true
       },
       {
         "type": "object",
-        "named": true
-      },
-      {
-        "type": "string",
-        "named": true
-      },
-      {
-        "type": "true",
         "named": true
       }
     ]
@@ -84,6 +68,10 @@
           "named": true
         },
         {
+          "type": "filterExpr",
+          "named": true
+        },
+        {
           "type": "pair",
           "named": true
         }
@@ -111,6 +99,10 @@
           "named": true
         },
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
           "type": "object",
           "named": true
         }
@@ -131,6 +123,25 @@
         },
         {
           "type": "typeExpr",
+          "named": true
+        },
+        {
+          "type": "valExpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "filterExpr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
           "named": true
         },
         {
@@ -174,11 +185,6 @@
     "fields": {}
   },
   {
-    "type": "importFun",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "importStatement",
     "named": true,
     "fields": {},
@@ -188,10 +194,6 @@
       "types": [
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "importFun",
           "named": true
         },
         {
@@ -205,6 +207,37 @@
     "type": "keyword",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "object",
@@ -353,6 +386,10 @@
     "named": false
   },
   {
+    "type": "and",
+    "named": false
+  },
+  {
     "type": "as",
     "named": false
   },
@@ -373,6 +410,10 @@
     "named": true
   },
   {
+    "type": "export",
+    "named": false
+  },
+  {
     "type": "false",
     "named": true
   },
@@ -382,6 +423,10 @@
   },
   {
     "type": "float",
+    "named": false
+  },
+  {
+    "type": "has",
     "named": false
   },
   {
@@ -398,6 +443,10 @@
   },
   {
     "type": "map",
+    "named": false
+  },
+  {
+    "type": "not",
     "named": false
   },
   {
@@ -423,6 +472,10 @@
   {
     "type": "true",
     "named": true
+  },
+  {
+    "type": "where",
+    "named": false
   },
   {
     "type": "{",

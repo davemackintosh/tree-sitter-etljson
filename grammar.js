@@ -5,16 +5,25 @@ module.exports = grammar(JSON, {
 
 	rules: {
 		document: $ => seq(
-			$.importStatement,
+			repeat1($.importStatement),
+			$.keyword,
 			choice(
 				$.funcExpr,
 				$.object,
 				$.array,
 			),
 		),
+		importStatement: $ => seq(
+			$.keyword,
+			$.identifier,
+			optional("[]"),
+			$.keyword,
+			$.identifier,
+		),
 		callbackObject: $ => seq(
 			"{ ",
 			$.callbackIdentifier,
+			optional(repeat($.filterExpr)),
 			commaSep($.pair),
 			"}",
 		),
@@ -22,6 +31,9 @@ module.exports = grammar(JSON, {
 			$.expr,
 			$.object,
 			$.array,
+			$.literal,
+		),
+		literal: $ => choice(
 			$.number,
 			$.string,
 			$.true,
@@ -35,14 +47,6 @@ module.exports = grammar(JSON, {
 			'int',
 			'datetime'
 		),
-		importFun: $ => choice("import"),
-		importStatement: $ => seq(
-			$.importFun,
-			$.identifier,
-			optional("[]"),
-			$.keyword,
-			$.identifier,
-		),
 		func: $ => choice(
 			"map",
 			"filter",
@@ -54,6 +58,16 @@ module.exports = grammar(JSON, {
 			" ",
 			$.valExpr,
 			$.callbackObject,
+		),
+		filterExpr: $ => seq(
+			$.keyword,
+			$.valExpr,
+			$.keyword,
+		),
+		equalityExpr: $ => seq(
+			$.valExpr,
+			$.keyword,
+			$.literal,
 		),
 		typeExpr: $ => seq(
 			$.type,
@@ -70,7 +84,7 @@ module.exports = grammar(JSON, {
 			$.valExpr,
 		),
 		identifier: $ => repeat1(choice(/[a-zA-Z_]/)),
-		keyword: $ => choice("in", "import", "as"),
+		keyword: $ => choice("in", "import", "export", "as", "where", "and", "has", "not"),
 		callbackIdentifier: $ => seq(
 			$.identifier,
 			" ",

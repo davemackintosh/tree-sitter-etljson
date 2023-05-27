@@ -14,5 +14,6 @@
 (type) @type
 (func) @keyword.function
 (string) @string
-(keyword) @keyword
-(importFun) @keyword
+[
+	(keyword)
+] @keyword
