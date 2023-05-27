@@ -1,4 +1,6 @@
-map $.products { p in
+import ShopifyProduct[] as products
+
+map products { p in
 	"externalId": string p.id,
 	"name": string p.title,
 	"description": string p.description,

@@ -1,4 +1,4 @@
-schema = (func-expression | object | array) , opt-white-space
+schema = import , (func-expression | object | array) , opt-white-space ;
 
 object = opt-white-space, OBJ_L , opt-white-space , (field , ","?)+ , opt-white-space , OBJ_R ;
 
@@ -17,8 +17,9 @@ value = object
 
 func-expression = functional-expr-funcs , " " , value-expression , callback-object ;
 type-expression = type-expr-types, " ", value-expression ;
-value-expression = ("$" | identifier) , ("." , identifier)? ;
+value-expression = (identifier) , ("." , identifier)? ;
 
+import = "import " , identifier , "[]"? , " as " , identifier , opt-white-space
 array = ARR_L , (value , ","), value , ARR_R ;
 identifier = (character | digit)+ ;
 string = '"' , printable-chars+ , '"' ;
@@ -57,4 +58,5 @@ OBJ_L = "{";
 OBJ_R = "}";
 ARR_L = "[";
 ARR_R = "]";
+
 

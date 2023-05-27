@@ -4,9 +4,16 @@ module.exports = grammar(JSON, {
 	name: 'etljson',
 
 	rules: {
+		document: $ => seq(
+			$.importStatement,
+			choice(
+				$.funcExpr,
+				$.object,
+				$.array,
+			),
+		),
 		callbackObject: $ => seq(
-			"{",
-			" ",
+			"{ ",
 			$.callbackIdentifier,
 			commaSep($.pair),
 			"}",
@@ -28,6 +35,14 @@ module.exports = grammar(JSON, {
 			'int',
 			'datetime'
 		),
+		importFun: $ => choice("import"),
+		importStatement: $ => seq(
+			$.importFun,
+			$.identifier,
+			optional("[]"),
+			$.keyword,
+			$.identifier,
+		),
 		func: $ => choice(
 			"map",
 			"filter",
@@ -46,10 +61,7 @@ module.exports = grammar(JSON, {
 			$.valExpr,
 		),
 		valExpr: $ => seq(
-			choice(
-				"$",
-				$.identifier,
-			),
+			$.identifier,
 			optional(seq(".", $.identifier)),
 		),
 		expr: $ => choice(
@@ -58,7 +70,7 @@ module.exports = grammar(JSON, {
 			$.valExpr,
 		),
 		identifier: $ => repeat1(choice(/[a-zA-Z_]/)),
-		keyword: $ => choice("in"),
+		keyword: $ => choice("in", "import", "as"),
 		callbackIdentifier: $ => seq(
 			$.identifier,
 			" ",

@@ -2,8 +2,30 @@
   "name": "etljson",
   "rules": {
     "document": {
-      "type": "SYMBOL",
-      "name": "_value"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "importStatement"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "funcExpr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array"
+            }
+          ]
+        }
+      ]
     },
     "_value": {
       "type": "CHOICE",
@@ -691,11 +713,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "STRING",
-          "value": " "
+          "value": "{ "
         },
         {
           "type": "SYMBOL",
@@ -765,6 +783,48 @@
         }
       ]
     },
+    "importFun": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "import"
+        }
+      ]
+    },
+    "importStatement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "importFun"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "[]"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
     "func": {
       "type": "CHOICE",
       "members": [
@@ -828,17 +888,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "$"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "CHOICE",
@@ -898,6 +949,14 @@
         {
           "type": "STRING",
           "value": "in"
+        },
+        {
+          "type": "STRING",
+          "value": "import"
+        },
+        {
+          "type": "STRING",
+          "value": "as"
         }
       ]
     },
